@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 from splinter import Browser
 import pandas as pd
+import time
 
 
 # NASA Mars News Site URL
@@ -79,7 +80,8 @@ tweet_text = weather_soup.find('div', attrs={"dir": "auto", "lang": "en"})
 #############################--> Mars Facts
 
 mars_facts_url = "https://space-facts.com/mars/"
-mars_tables = pd.read_html(url)
+mars_tables = pd.read_html(mars_facts_url)
+mars_df = mars_tables[0]
 mars_html_table = pd.DataFrame.to_html(mars_df)
 mars_html_table= mars_html_table.replace('\n', '')
 
