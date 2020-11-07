@@ -19,7 +19,6 @@ def scrape():
     executable_path = {'executable_path': 'chromedriver'}
     browser = Browser('chrome', **executable_path)
     browser.visit(nasa_url)
-
     #Need wait function to allow the page to open
     time.sleep(20)
 
@@ -67,7 +66,6 @@ def scrape():
     # Mars weather link
     weather_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(weather_url)
-
     time.sleep(20)
 
     #Creating BeautifulSoup object
