@@ -156,8 +156,16 @@ def scrape():
 
     # image dictionary 
     hemisphere_image_urls = [
-        {"title":"cerberus_title","img_url":"cerbus_img_link"},
-        {"title":"schiaprarell_title","img_url":"schiaprarelli_img_link"},
-        {"title":"syrtis_title","img_url":"syrtis_img_link"},
-        {"title":"valles_marineris_title","img_url":"valles_marineris_img_link"}]
-    return 
+        {"title":cerberus_title,"img_url":cerbus_img_link},
+        {"title":schiaprarelli_title,"img_url":schiaprarelli_img_link},
+        {"title":syrtis_title,"img_url":syrtis_img_link},
+        {"title":valles_marineris_title,"img_url":valles_marineris_img_link}]
+    return [
+        {"news_titile": news_title[0],
+         "news_para": news_p[0],
+         "mars_img": featured_image_url,
+         "weather": tweet_text,
+         "mars_facts": mars_html_table,
+         "hemp_dict": hemisphere_image_urls
+        }
+    ]
