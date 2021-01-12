@@ -13,7 +13,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_db")
 # Route to render index.html template for initial scraping
 @app.route("/")
 def home():
-    info = mongo.db.mars
+    info = mongo.db.mars_db
     # Run the scrape function and save the results to a variable
     scraped_data = mission_to_mars.scrape()
 
@@ -21,7 +21,7 @@ def home():
     info.update({}, scraped_data, upsert=True)
 
  # Find one record of data from the mongo database   
-    info = mongo.db.mars.find_one()
+    info = mongo.db.mars_db.find_one()
     
     # Return template and data
     return render_template("index.html", info=info)
@@ -30,7 +30,7 @@ def home():
 # Route that will trigger the scrape function
 @app.route("/scrape")
 def scrape():
-    info = mongo.db.mars
+    info = mongo.db.mars_db
     
     # Run the scrape function and save the results to a variable
     scraped_data = mission_to_mars.scrape()
