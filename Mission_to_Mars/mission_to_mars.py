@@ -1,16 +1,16 @@
-#!/usr/bin/env python
-# coding: utf-8
+
+ # Dependencies
+import os
+from bs4 import BeautifulSoup as bs
+import requests
+from splinter import Browser
+import pandas as pd
+import time
 
 ###############################--> NASA Mars News 
 def scrape():
-    # Dependencies
-    import os
-    from bs4 import BeautifulSoup as bs
-    import requests
-    from splinter import Browser
-    import pandas as pd
-    import time
-
+   
+    nasa_scrape = {}
 
     # NASA Mars News Site URL
     nasa_url= "https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest"
@@ -50,8 +50,8 @@ def scrape():
     time.sleep(20)
 
     #Creating BeautifulSoup object
-    html = browser.html
-    images_soup = bs(html, 'html.parser')
+    html_img = browser.html
+    images_soup = bs(html_img, 'html.parser')
 
     # Scraping the images parent
     div_ul_parent = images_soup.select_one("ul.articles")
@@ -69,8 +69,8 @@ def scrape():
     time.sleep(20)
 
     #Creating BeautifulSoup object
-    html = browser.html
-    weather_soup = bs(html, 'html.parser')
+    html_weather = browser.html
+    weather_soup = bs(html_weather, 'html.parser')
 
     #Scraping the image link
     tweet_text = weather_soup.find('div', attrs={"dir": "auto", "lang": "en"})
@@ -160,12 +160,16 @@ def scrape():
         {"title":schiaprarelli_title,"img_url":schiaprarelli_img_link},
         {"title":syrtis_title,"img_url":syrtis_img_link},
         {"title":valles_marineris_title,"img_url":valles_marineris_img_link}]
-    return [
-        {"news_titile": news_title[0],
+
+    nasa_scrape = {
+         "news_titile": news_title[0],
          "news_para": news_p[0],
          "mars_img": featured_image_url,
          "weather": tweet_text,
          "mars_facts": mars_html_table,
          "hemp_dict": hemisphere_image_urls
-        }
-    ]
+         }
+
+    return nasa_scrape
+
+    
