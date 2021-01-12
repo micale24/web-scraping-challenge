@@ -1,20 +1,18 @@
 
-# Dependencies
+def init_browser():
+    # @NOTE: Replace the path with your actual path to the chromedriver
+    executable_path = {"executable_path": "chromedriver.exe"}
+    return Browser("chrome", **executable_path, headless=False)
+
+###############################--> NASA Mars News 
+def scrape():
+    # Dependencies
     import os
     from bs4 import BeautifulSoup as bs
     import requests
     from splinter import Browser
     import pandas as pd
     import time
-
-def init_browser():
-    # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "chromedriver.exe"}
-    return Browser("chrome", **executable_path, headless=False)
-
-
-###############################--> NASA Mars News 
-def scrape():
     browser = init_browser()
     nasa_scrape = {}
 
