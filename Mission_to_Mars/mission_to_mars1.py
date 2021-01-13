@@ -38,13 +38,12 @@ def scrapeMars():
     div_id_parent = news_soup.select_one("ul.item_list")
 
     #Scraping the title
-    news_title = div_id_parent.find('div', class_="content_title")
-    
+    news_title = div_id_parent.find('div', class_="content_title").text
     #Scraping the body
-    news_p = div_id_parent.find('div', class_="article_teaser_body")
+    news_p = div_id_parent.find('div', class_="article_teaser_body").text
     
-    news_title = news_title.text
-    news_p = news_p.text
+    # news_title = news_title.text
+    # news_p = news_p.text
     #Loop for all titles and body section
     # news_titles = []
     # news_paras = []
@@ -103,8 +102,8 @@ def scrapeMars():
     weather_soup = bs(html_weather, 'html.parser')
 
     #Scraping the image link
-    tweet_text = weather_soup.find('div', attrs={"dir": "auto", "lang": "en"})
-
+    tweet_text = weather_soup.find('span', class_="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0").text
+    tweet_text = f'{tweet_text},But...current weather as of Jan 13, 2010: InSight sol 757 (2021-01-12) low -48.7ºC (-55.7ºF) high -8.1ºC (17.4ºF)\n winds from the SW at 4.3 m/s (9.5 mph) gusting to 13.9 m/s (31.0 mph)\n pressure at 7.20 hPa'
     print("Mars Weather Tweet Scrape Completed")
 
     ####///Mars Facts\\\\####
@@ -142,7 +141,7 @@ def scrapeMars():
 
     #Scraping the cerbus title
     cerberus_title = cerberus_soup.find("h2", class_="title")
-    
+    cerberus_title = cerberus_title.text
     print("Cerberus Completed") 
 
     #### Schiaparelli 
@@ -162,7 +161,7 @@ def scrapeMars():
     
     #Scraping the cerbus title
     schiaparelli_title = schiaparelli_soup.find("h2", class_="title")
-    
+    schiaparelli_title = schiaparelli_title.text
     print("Schiaparelli Completed")
     
     #####Syrtis
@@ -185,7 +184,7 @@ def scrapeMars():
    
     #Scraping the syrtis title
     syrtis_title = syrtis_soup.find("h2", class_="title")
-    
+    syrtis_title = syrtis_title.text
     print("Syrtis Completed")
 
     #### Valles Marineris 
@@ -205,6 +204,7 @@ def scrapeMars():
     
     #Scraping the syrtis title
     valles_marineris_title = valles_marineris_soup.find("h2", class_="title")
+    valles_marineris_title = valles_marineris_title.text
     print("Valles Completed")
 
     # image dictionary 
@@ -224,9 +224,7 @@ def scrapeMars():
          }
 
     print("NASA Scrape Completed")
-
+    print(nasa_scrape)
     return nasa_scrape
 
 # scrapeMars()
-
-
