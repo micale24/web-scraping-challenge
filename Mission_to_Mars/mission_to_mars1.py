@@ -38,17 +38,19 @@ def scrapeMars():
     div_id_parent = news_soup.select_one("ul.item_list")
 
     #Scraping the title
-    news_title = div_id_parent.find_all('div', class_="content_title")
+    news_title = div_id_parent.find('div', class_="content_title")
     
     #Scraping the body
-    news_p = div_id_parent.find_all('div', class_="article_teaser_body")
+    news_p = div_id_parent.find('div', class_="article_teaser_body")
     
+    news_title = news_title.text
+    news_p = news_p.text
     #Loop for all titles and body section
-    news_titles = []
-    news_paras = []
-    for i in range(len(news_p)):
-        news_titles.append(news_title[i].text)
-        news_paras.append(news_p[i].text)
+    # news_titles = []
+    # news_paras = []
+    # for i in range(len(news_p)):
+    #     news_titles.append(news_title[i].text)
+    #     news_paras.append(news_p[i].text)
     
     print("News Title and Paragraph Scrape Completed")
 
@@ -213,8 +215,8 @@ def scrapeMars():
         {"title":valles_marineris_title,"img_url":valles_marineris_img_link}]
 
     nasa_scrape = {
-         "news_titile": news_title[0],
-         "news_para": news_p[0],
+         "news_titile": news_title,
+         "news_para": news_p,
          "mars_img": featured_image_url,
          "weather": tweet_text,
          "mars_facts": mars_html_table,
@@ -225,6 +227,6 @@ def scrapeMars():
 
     return nasa_scrape
 
-scrapeMars()
+# scrapeMars()
 
 
