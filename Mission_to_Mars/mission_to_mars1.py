@@ -32,6 +32,8 @@ def scrapeMars():
     html = browser.html
     news_soup = bs(html, 'html.parser')
 
+    print("News Title and Paragraph Scrape...")
+
     # Scraping the article parent
     div_id_parent = news_soup.select_one("ul.item_list")
 
@@ -47,8 +49,11 @@ def scrapeMars():
     for i in range(len(news_p)):
         news_titles.append(news_title[i].text)
         news_paras.append(news_p[i].text)
+    
+    print("News Title and Paragraph Scrape Completed")
 
     ####////JPL Mars Space Images - Featured Image\\\\####
+
     # Mars image link 
     images_url = "https://www.jpl.nasa.gov/images/rabe-crater-dunes-27/"
     requests.get(url)
@@ -60,6 +65,8 @@ def scrapeMars():
     #Creating BeautifulSoup object
     html_img = browser.html
     images_soup = bs(html_img, 'html.parser')
+
+    print("Mars Featured Image Scrape...")
 
     # Scraping the images parent
     div_pic_parent = images_soup.find('div',class_='relative bg-black border border-black')
@@ -73,6 +80,7 @@ def scrapeMars():
     featured_image_url = f'{image_link_src}'
     requests.get(featured_image_url)
 
+    print("Mars Featured Image Scrape Completed")
    
     ####////Mars Weather\\\\####
 
@@ -86,35 +94,41 @@ def scrapeMars():
     #Need wait function to allow the page to open
     time.sleep(2)
 
+    print("Mars Weather Tweet Scrape...")
+
     #Creating BeautifulSoup object
     html_weather = browser.html
     weather_soup = bs(html_weather, 'html.parser')
 
     #Scraping the image link
     tweet_text = weather_soup.find('div', attrs={"dir": "auto", "lang": "en"})
-    print(tweet_text.text)
+
+    print("Mars Weather Tweet Scrape Completed")
 
     ####///Mars Facts\\\\####
 
     mars_fact_url = "https://space-facts.com/mars/"
     requests.get(mars_fact_url)
+    print("Mars Facts Scrape...")
+
     mars_space_fact = pd.read_html(mars_fact_url)
-
     mars_Df = mars_space_fact[0]
-
-    Mars_df = mars_Df.columns=['Mars Description', 'Value']
-
+    Mars_df = mars_Df.rename(columns={0:"Mars Description",1:"Value"})
     mars_html_table = pd.DataFrame.to_html(Mars_df)
-    
     mars_html_table= mars_html_table.replace('\n', '')
     
+    print("Mars Facts Scrape Completed")
     
     #####////Mars Hemispheres\\\\####
   
+    print("Mars Hemisphere Scrape...") 
+
     #### Cerberus
     cerberus_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced"
     browser.visit(cerberus_url)
     time.sleep(2)
+
+    print("Cerberus...") 
 
     #Creating BeautifulSoup object
     html_cerberus = browser.html
@@ -127,11 +141,14 @@ def scrapeMars():
     #Scraping the cerbus title
     cerberus_title = cerberus_soup.find("h2", class_="title")
     
+    print("Cerberus Completed") 
+
     #### Schiaparelli 
-    Schiaparelli
     schiaparelli_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced"
     browser.visit(schiaparelli_url)
     time.sleep(2)
+
+    print("Schiaparelli...")
 
     #Creating BeautifulSoup object
     html_schiaparelli = browser.html
@@ -143,8 +160,11 @@ def scrapeMars():
     
     #Scraping the cerbus title
     schiaparelli_title = schiaparelli_soup.find("h2", class_="title")
-   
+    
+    print("Schiaparelli Completed")
+    
     #####Syrtis
+
     #syrtis link
     syrtis_major_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced"
   
@@ -154,6 +174,8 @@ def scrapeMars():
     browser.visit(syrtis_major_url)
     time.sleep(2)
 
+    print("Syrtis...")
+
     # Scraping the images parent
     syrtis_parent = syrtis_soup.find("div", id="wide-image")
  
@@ -161,7 +183,9 @@ def scrapeMars():
    
     #Scraping the syrtis title
     syrtis_title = syrtis_soup.find("h2", class_="title")
-  
+    
+    print("Syrtis Completed")
+
     #### Valles Marineris 
     valles_marineris_url = "https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced"
 
@@ -171,6 +195,7 @@ def scrapeMars():
     browser.visit(valles_marineris_url)
     time.sleep(2)
 
+    print("Valles...")
     # Scraping the images parent
     valles_marineris_parent = valles_marineris_soup.find("div", id="wide-image")
 
@@ -178,7 +203,8 @@ def scrapeMars():
     
     #Scraping the syrtis title
     valles_marineris_title = valles_marineris_soup.find("h2", class_="title")
-    
+    print("Valles Completed")
+
     # image dictionary 
     hemisphere_image_urls = [
         {"title":cerberus_title,"img_url":cerbus_img_link},
@@ -194,8 +220,11 @@ def scrapeMars():
          "mars_facts": mars_html_table,
          "hemp_dict": hemisphere_image_urls
          }
+
+    print("NASA Scrape Completed")
+
     return nasa_scrape
 
-
+scrapeMars()
 
 
