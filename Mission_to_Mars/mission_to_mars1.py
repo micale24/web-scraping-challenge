@@ -12,7 +12,14 @@ import pandas as pd
 import time
 
 
+def init_browser():
+    executable_path = {"executable_path": "chromedriver.exe"}
+    return Browser("chrome", **executable_path, headless=False)
+
+
 def scrapeMars():
+
+    browser = init_browser()
 
     nasa_scrape = {}
 
@@ -23,8 +30,8 @@ def scrapeMars():
     ##//NASA Mars News\\##
 
     #Creating the path and enabling the pages's js and creating the soup object
-    executable_path = {'executable_path': 'chromedriver'}
-    browser = Browser('chrome', **executable_path)
+    # executable_path = {'executable_path': 'chromedriver'}
+    # browser = Browser('chrome', **executable_path)
     browser.visit(url)
     time.sleep(2)
 
@@ -58,8 +65,8 @@ def scrapeMars():
     # Mars image link 
     images_url = "https://www.jpl.nasa.gov/images/rabe-crater-dunes-27/"
     requests.get(url)
-    executable_path = {'executable_path': 'chromedriver'}
-    browser = Browser('chrome', **executable_path)
+    # executable_path = {'executable_path': 'chromedriver'}
+    # browser = Browser('chrome', **executable_path)
     browser.visit(images_url)
     time.sleep(2)
 
@@ -88,8 +95,8 @@ def scrapeMars():
     # Mars weather link
     weather_url = "https://twitter.com/marswxreport?lang=en"
 
-    executable_path = {'executable_path': 'chromedriver'}
-    browser = Browser('chrome', **executable_path)
+    # executable_path = {'executable_path': 'chromedriver'}
+    # browser = Browser('chrome', **executable_path)
 
     browser.visit(weather_url)
     #Need wait function to allow the page to open
@@ -224,7 +231,7 @@ def scrapeMars():
          }
 
     print("NASA Scrape Completed")
-    print(nasa_scrape)
+    browser.quit()
     return nasa_scrape
 
 # scrapeMars()

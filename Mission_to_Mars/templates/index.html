@@ -20,22 +20,22 @@
 <body class="bg-dark">
     <div class="container-fluid p-0">
         <div class="jumbotron jumbotron-fluid m-0 text-center bg-mars-yellow">
-            <h1 class="text-light header-font mb-3"> Mission to Mars</h1>
+            <h1 class="text-dark header-font mb-3"> Mission to Mars</h1>
             <p><a class="btn btn-light btn-md" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
 
         <div class="row px-4 pt-4 mt-3">
             <div class="col-12">
-                <h3 class="mini-header-font mb-3">Latest Mars News</h3>
+                <h3 class="text-light mini-header-font mb-3">Latest Mars News</h3>
                 <h5 class="headline"><b>{{info.news_title}}</b></h5>
-                <p class="font-weight-light">{{info.news_p}}</p>
+                <p class="font-weight-light">{{info.news_para}}</p>
             </div>
         </div>
 
         <div class="row p-4">
             <div class="col-sm-12 col-md-7">
-                <h3 class="mini-header-font mb-3">Featured Mars Image</h3>
-                    <img class="img-fluid " src={{info.featuredimage_url}} alt="Feature Image" >
+                <h3 class="text-light mini-header-font mb-3">Featured Mars Image</h3>
+                    <img class="img-fluid " src={{info.mars_img}} alt="Feature Image" >
                     <caption><small>Source: <a class="link" target="blank_ " href="https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars ">jpl.nasa.gov</a></small></caption>
             </div>
 
@@ -45,7 +45,7 @@
                         <h6 class="text-light m-auto mini-header-font ">Current Weather on Mars</h6>
                     </div>
                     <div class=" card-body ">
-                        <p class="font-weight-light ">{{info.mars_weather}}</p>
+                        <p class="font-weight-light ">{{info.weather}}</p>
                         <caption><small>Source: <a class="link" target="blank_ " href="https://twitter.com/marswxreport ">@marswxreport</a></small></caption>
                     </div>
                 </div>
@@ -54,8 +54,7 @@
                     <div class="card-header bg-mars-yellow ">
                         <h6 class="mini-header text-light m-0 mini-header-font ">Mars Planet Profile</h6>
                     </div>
-                    <div class="card-body table-responsive table-striped table-dark ">
-                        {{info.mars_fact_table|safe}}
+                    <div class="card-body table-responsive table-striped table-dark ">{{info.mars_facts|safe}}
                         <caption><small>Source: <a class="link" href="https://space-facts.com/mars/ ">Mars Facts</a></small></caption>
 
                     </div>
@@ -67,23 +66,23 @@
 
         <div class="row mt-5 mb-3 ">
             <div class="col-12 ">
-                <h3 class="text-center mini-header-font ">Mars Hemispheres</h3>
+                <h3 class="text-light text-center mini-header-font ">Mars Hemispheres</h3>
             </div>
         </div>
         
         <div class="row mb-3">
             <div class="card-deck mx-auto ">
                 <div class="card bg-grey-card" style="width: 24rem; ">
-                    <img class="card-img-top img-fluid " src={{info.hemisphere_images[0].img_url }} alt={{info.hemisphere_images[0].title }}/>
+                    <img class="card-img-top img-fluid " src={{info.hemp_dict[0].img_url }} alt={{info.hemp_dict[0].title }}/>
                     <div class="card-body ">
-                        <p class="card-text text-center "><strong>{{ info.hemisphere_images[0].title }}</strong></p>
+                        <p class="card-text text-center "><strong>{{info.hemp_dict[0].title}}</strong></p>
                     </div>
                 </div>
 
                 <div class="card bg-grey-card" style="width: 24rem; ">
-                    <img class="card-img-top img-fluid " src={{info.hemisphere_images[1].img_url}} alt={{info.hemisphere_images[1].title}}/>
+                    <img class="card-img-top img-fluid " src={{info.hemp_dict[1].img_url}} alt={{info.hemp_dict[1].title}}/>
                     <div class="card-body ">
-                        <p class="card-text text-center "><strong>{{info.hemisphere_images[1].title}}</strong></p>
+                        <p class="card-text text-center "><strong>{{info.hemp_dict[1].title}}</strong></p>
                     </div>
                 </div>
             </div>
@@ -93,16 +92,16 @@
         <div class="row mt-2 mb-4">
             <div class="card-deck mx-auto ">
                 <div class="card bg-grey-card" style="width: 24rem; ">
-                    <img class="card-img-top img-fluid " src={{info.hemisphere_images[2].img_url}} alt={{info.hemisphere_images[2].title}}/>
+                    <img class="card-img-top img-fluid " src={{info.hemp_dict[2].img_url}} alt={{info.hemp_dict[2].title}}/>
                     <div class="card-body ">
-                        <p class="card-text text-center "><strong>{{info.hemisphere_images[2].title}}</strong></p>
+                        <p class="card-text text-center "><strong>{{info.hemp_dict[2].title}}</strong></p>
                     </div>
                 </div>
 
                 <div class="card bg-grey-card" style="width: 24rem; ">
-                    <img class="card-img-top img-fluid " src={{info.hemisphere_images[3].img_url}} alt={{info.hemisphere_images[3].title}}/>
+                    <img class="card-img-top img-fluid " src={{info.hemp_dict[3].img_url}} alt={{info.hemp_dict[3].title}}/>
                     <div class="card-body ">
-                        <p class="card-text text-center "><strong>{{info.hemisphere_images[3].title}}</strong></p>
+                        <p class="card-text text-center "><strong>{{info.hemp_dict[3].title}}</strong></p>
                     </div>
                 </div>
             </div>
@@ -112,7 +111,7 @@
         
         <footer class="bg-mars-yellow">
             <div>
-                <!-- <p class="text-light text-center p-3 m-0">A <a class="foot-a" href="https://github.com">Web </a> by  &#169; 2021</p> -->
+                <p class="text-light text-center p-3 m-0">A John Hoplinks Boot Camp Web Scrape Project made by <a class="foot-a" href="https://github.com/micale24">Kai H. </a> with &#128170 and  &#10084 ; 2021</p>
             </div>
 
         </footer>
